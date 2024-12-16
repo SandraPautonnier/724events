@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"; // Ajout de React
 import { useData } from "../../contexts/DataContext";
 import { getMonth } from "../../helpers/Date";
 
@@ -9,7 +9,7 @@ const Slider = () => {
   const [index, setIndex] = useState(0);
 
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
-    new Date(evtA.date) < new Date(evtB.date) ? -1 : 1 // Changement du < en > 
+    new Date(evtA.date) < new Date(evtB.date) ? -1 : 1 // 
   );
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const Slider = () => {
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
-        <>
+        <div key={`event-wrapper-${event.title}-${event.date}`}> 
           <div
             key={event.title}
             className={`SlideCard SlideCard--${
@@ -62,7 +62,7 @@ const Slider = () => {
               ))}
             </div>
           </div>
-        </>
+        </div> // Utilisation d'une clé
       ))}
     </div>
   );
