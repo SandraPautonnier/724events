@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import EventCard from "../../components/EventCard";
 import Select from "../../components/Select";
 import { useData } from "../../contexts/DataContext";
@@ -11,16 +11,17 @@ const PER_PAGE = 9;
 
 const EventList = () => {
   const { data, error } = useData();
-  const [type, setType] = useState();
+  const [type, setType] = useState(null); // "Tous" est sélectionné par défaut
   const [currentPage, setCurrentPage] = useState(1);
+
   const filteredEvents = (
     (!type
-      ? data?.events
+      ? data?.events //  Si aucun filtre n'est sélectionné, afficher tous les événements
       : data?.events.filter(
           (event) =>
             event.type.trim().toLowerCase() === type.trim().toLowerCase()
         )) || []
-  ).filter((event, index) => {
+  ).filter((_, index) => {
     if (
       (currentPage - 1) * PER_PAGE <= index &&
       PER_PAGE * currentPage > index
@@ -28,14 +29,18 @@ const EventList = () => {
       return true;
     }
     return false;
-  });
-  const changeType = (evtType) => {
-    setCurrentPage(1);
-    setType(evtType);
-  };
-  const pageNumber = Math.floor((filteredEvents?.length || 0) / PER_PAGE) + 1;
+  }); 
+
   const typeList = new Set(data?.events.map((event) => event.type));
-  console.log(type);
+  
+
+  const changeType = (evtType) => {
+    setType(evtType);
+    setCurrentPage(1);
+  };
+  
+  const pageNumber = Math.floor((filteredEvents?.length || 0) / PER_PAGE) + 1;
+  
 
   return (
     <>
@@ -65,7 +70,7 @@ const EventList = () => {
             ))}
           </div>
           <div className="Pagination">
-            {[...Array(pageNumber || 0)].map((_, n) => (
+            {[...Array(pageNumber)].map((_, n) => (
               // eslint-disable-next-line react/no-array-index-key
               <a key={n} href="#events" onClick={() => setCurrentPage(n + 1)}>
                 {n + 1}
