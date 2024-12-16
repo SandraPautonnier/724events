@@ -1,3 +1,4 @@
+import React from "react";
 import Menu from "../../containers/Menu";
 import ServiceCard from "../../components/ServiceCard";
 import EventCard from "../../components/EventCard";
@@ -13,7 +14,8 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
-  const {last} = useData()
+  const {data} = useData();
+  const lastEvent = data.events[data.events.length - 1]; // Ajout du constante lastEvent
   return <>
     <header>
       <Menu />
@@ -117,11 +119,11 @@ const Page = () => {
       <div className="col presta">
         <h3>Notre derniére prestation</h3>
         <EventCard
-          imageSrc={last?.cover}
-          title={last?.title}
-          date={new Date(last?.date)}
+          imageSrc={lastEvent.cover}
+          title={lastEvent.title}
+          date={new Date(lastEvent.date)}
           small
-          label="boom"
+          label={lastEvent.type} // Ajout du type et utilisation de lastEvent
         />
       </div>
       <div className="col contact">
