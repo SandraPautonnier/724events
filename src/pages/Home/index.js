@@ -1,7 +1,7 @@
 import React from "react";
 import Menu from "../../containers/Menu";
 import ServiceCard from "../../components/ServiceCard";
-import EventCard from "../../components/EventCard";
+
 import PeopleCard from "../../components/PeopleCard";
 
 import "./style.scss";
@@ -12,9 +12,10 @@ import Icon from "../../components/Icon";
 import Form from "../../containers/Form";
 import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
+import EventCard from "../../components/EventCard";
 
 const Page = () => {
-  const {last} = useData();
+  const { last } = useData();
   return <>
     <header>
       <Menu />
@@ -122,7 +123,7 @@ const Page = () => {
           title={last?.title}
           date={new Date(last?.date)}
           small
-          label={last?.type} // Ajout du type et utilisation de lastEvent
+          label={last?.type}
         />
       </div>
       <div className="col contact">

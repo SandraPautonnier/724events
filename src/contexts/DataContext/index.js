@@ -19,17 +19,37 @@ export const api = {
 export const DataProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
+  
   const getData = useCallback(async () => {
     try {
-      setData(await api.loadData());
+      const fetchedData = await api.loadData();  // On récupère les données
+      setData(fetchedData);  // On met à jour l'état avec les données récupérées
     } catch (err) {
       setError(err);
     }
-  }, []);
-  useEffect(() => {
+  }, []); 
+
+ /* useEffect(() => {
     if (data) return;
     getData();
-  });
+  }); */
+
+   useEffect(() => {
+    if (!data) {
+      getData(); // Si les données sont null, on les charge
+    }
+  }, [data, getData]);
+
+   // Récupérer le dernier événement de la propriété "events"
+   const last = data && data.events
+   ? data.events.slice(-1)[0] // On récupère le dernier événement sans modifier le tableau
+   : null;
+
+  /* useEffect(() => {
+  console.log("Données actuelles:", data);
+  console.log("Dernier élément:", last);
+}, [data, last]); */
+
   
   return (
     <DataContext.Provider
@@ -37,6 +57,7 @@ export const DataProvider = ({ children }) => {
       value={{
         data,
         error,
+        last, // Ajout du paramètre last
       }}
     >
       {children}

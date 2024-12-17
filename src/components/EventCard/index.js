@@ -30,17 +30,20 @@ const EventCard = ({
   );
 
 EventCard.propTypes = {
-  imageSrc: PropTypes.string.isRequired,
+  imageSrc: PropTypes.string, // suppression de isRequired
   imageAlt: PropTypes.string,
   date: PropTypes.instanceOf(Date).isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string, // suppression de isRequired
   small: PropTypes.bool,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string, // suppression de isRequired
 };
 
 EventCard.defaultProps = {
-  imageAlt: "image",
+  imageAlt: "image", 
   small: false,
+  title: "titre", // Ajout par défaut
+  label: "catégorie", // Ajout par défaut
+  imageSrc: "", // Ajout par défaut
 }
 
 export default EventCard;
