@@ -96,7 +96,7 @@ const Page = () => {
         <h2 className="Title">Contact</h2>
         <Modal
           Content={
-            <div className="ModalMessage--success">
+            <div className="ModalMessage--success"> {/* affichage du message pour la confirmation de l'envoi du formulaire */}
               <div>Message envoyé !</div>
               <p>
                 Merci pour votre message nous tâcherons de vous répondre dans

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import Field, { FIELD_TYPES } from "../../components/Field";
 import Select from "../../components/Select";
@@ -8,7 +8,10 @@ const mockContactApi = () => new Promise((resolve) => { setTimeout(resolve, 500)
 
 const Form = ({ onSuccess, onError }) => {
   const [sending, setSending] = useState(false);
-  const [message, setMessage] = useState(""); // Ajouter un état pour le message de confirmation
+
+  // Création d'une référence pour le formulaire
+  const formRef = useRef(null);
+
   const sendContact = useCallback(
     async (evt) => {
       evt.preventDefault();
@@ -17,18 +20,22 @@ const Form = ({ onSuccess, onError }) => {
       try {
         await mockContactApi();
         setSending(false);
-        setMessage("Votre message a été envoyé avec succès !"); // Message de confirmation
         if (onSuccess) onSuccess(); // Appelle de la fonction de succès
+
+        // Réinitialisation du formulaire
+        if (formRef.current) {
+          formRef.current.reset();
+        }
+
       } catch (err) {
         setSending(false);
-        setMessage("Une erreur est survenue, veuillez réessayer."); // Message d'erreur
         onError(err);
       }
     },
     [onSuccess, onError]
   );
   return (
-    <form onSubmit={sendContact}>
+    <form onSubmit={sendContact} ref={formRef}>
       <div className="row">
         <div className="col">
           <Field placeholder="" label="Nom" />
@@ -51,7 +58,6 @@ const Form = ({ onSuccess, onError }) => {
             label="Message"
             type={FIELD_TYPES.TEXTAREA}
           />
-          {message && <div style={{color: `white`}}>{message}</div>} {/* Affichage du message de confirmation */}
         </div>
       </div>
     </form>
