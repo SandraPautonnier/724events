@@ -1,7 +1,6 @@
 import React from "react";
 import Menu from "../../containers/Menu";
 import ServiceCard from "../../components/ServiceCard";
-
 import PeopleCard from "../../components/PeopleCard";
 
 import "./style.scss";
