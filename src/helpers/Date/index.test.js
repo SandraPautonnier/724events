@@ -14,7 +14,7 @@ describe("Date helper", () => {
       expect(result).toBe("juillet");
     });
 
-    it("the function returns 'février' for a leap year date (2024-02-29)", () => {
+    it("the function returns 'février' for a leap year date (2024-02-29)", () => { // Vérifie pour une date avec une année bissextile
       const date = new Date("2024-02-29");
       const result = getMonth(date);
       expect(result).toBe("février");
@@ -26,7 +26,7 @@ describe("Date helper", () => {
       expect(result).toBe("décembre");
     });
 
-    it("the function throws an error when an invalid date is provided", () => {
+    it("the function throws an error when an invalid date is provided", () => { // Vérifie si il y a une erreur dans la date
       const invalidDate = new Date("invalid-date");
       expect(() => getMonth(invalidDate));
     });
