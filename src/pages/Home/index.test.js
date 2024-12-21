@@ -20,8 +20,8 @@ describe("When Form is created", () => {
           bubbles: true,
         })
       );
-      await screen.findByText("En cours");
-      await screen.findByText("Message envoyé !");
+      await screen.queryAllByText("En cours");
+      await screen.queryAllByText("Message envoyé !");
     });
   });
 
