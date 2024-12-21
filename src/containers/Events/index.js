@@ -39,7 +39,7 @@ const EventList = () => {
     setCurrentPage(1);
   };
   
-  const pageNumber = Math.floor((filteredEvents?.length || 0) / PER_PAGE) + 1;
+  const pageNumber = Math.ceil((data?.events?.length || 0) / PER_PAGE); //
   
 
   return (
