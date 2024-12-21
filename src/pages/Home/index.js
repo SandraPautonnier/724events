@@ -15,6 +15,7 @@ import EventCard from "../../components/EventCard";
 
 const Page = () => {
   const { last } = useData();
+  
   return <>
     <header>
       <Menu />

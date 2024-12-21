@@ -8,13 +8,32 @@ const mockContactApi = () => new Promise((resolve) => { setTimeout(resolve, 500)
 
 const Form = ({ onSuccess, onError }) => {
   const [sending, setSending] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(""); // État pour le message d'erreur
 
   // Création d'une référence pour le formulaire
   const formRef = useRef(null);
 
+  const validateForm = useCallback(() => {
+    if (!formRef.current) return false;
+
+    // Récupérer tous les champs du formulaire
+    const inputs = Array.from(formRef.current.querySelectorAll("input, textarea, select"));
+
+    // Vérifier si tous les champs requis sont remplis
+    return inputs.every((input) => input.value.trim() !== "");
+  }, []);
+
   const sendContact = useCallback(
     async (evt) => {
       evt.preventDefault();
+
+      // Validation des champs
+      if (!validateForm()) {
+        setErrorMessage("Veuillez remplir tous les champs.");
+        return;
+      }
+
+      setErrorMessage(""); // Réinitialiser le message d'erreur
       setSending(true);
       // We try to call mockContactApi
       try {
@@ -32,7 +51,7 @@ const Form = ({ onSuccess, onError }) => {
         onError(err);
       }
     },
-    [onSuccess, onError]
+    [validateForm, onSuccess, onError]
   );
   return (
     <form onSubmit={sendContact} ref={formRef}>
@@ -58,6 +77,7 @@ const Form = ({ onSuccess, onError }) => {
             label="Message"
             type={FIELD_TYPES.TEXTAREA}
           />
+          {errorMessage && <p style={{color: 'white'}}>{errorMessage}</p>}
         </div>
       </div>
     </form>
