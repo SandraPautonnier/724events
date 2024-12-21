@@ -23,6 +23,12 @@ const Form = ({ onSuccess, onError }) => {
     return inputs.every((input) => input.value.trim() !== "");
   }, []);
 
+  // Fonction de validation de l'email
+  const validateEmail = (email) => {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    return emailRegex.test(email);
+  };
+
   const sendContact = useCallback(
     async (evt) => {
       evt.preventDefault();
@@ -30,6 +36,13 @@ const Form = ({ onSuccess, onError }) => {
       // Validation des champs
       if (!validateForm()) {
         setErrorMessage("Veuillez remplir tous les champs.");
+        return;
+      }
+
+      // Vérification du format de l'email
+      const emailField = formRef.current.querySelector('input[type="email"]');
+      if (emailField && !validateEmail(emailField.value)) {
+        setErrorMessage("Veuillez entrer un email valide.");
         return;
       }
 
@@ -66,7 +79,7 @@ const Form = ({ onSuccess, onError }) => {
             type="large"
             titleEmpty
           />
-          <Field placeholder="" label="Email" />
+          <Field placeholder="" label="Email" type={FIELD_TYPES.EMAIL} /> {/* Utilisation du type EMAIL ici */}
           <Button type={BUTTON_TYPES.SUBMIT} disabled={sending}>
             {sending ? "En cours" : "Envoyer"}
           </Button>
