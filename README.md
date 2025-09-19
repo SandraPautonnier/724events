@@ -1,6 +1,6 @@
 # Projet professionnalisant Openclassrooms : 724 events - Site web d'une agence évènementielle
 
-Contexte fictif : Je suis développeuse front-end en freelance, et l’agence évènementielle 724events m'a contacter pour publier la nouvelle version de son site vitrine.  Je m'occupe de réparer les bugs de ce site.
+Contexte fictif : Je suis développeuse front-end en freelance, et l’agence évènementielle 724events m'a contacté pour publier la nouvelle version de son site vitrine.  Je m'occupe de réparer les bugs de ce site.
 
 ## Objectif du projet :
 - Lister et Réparer les bugs.
