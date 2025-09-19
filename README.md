@@ -10,7 +10,7 @@ Contexte fictif : Je suis développeuse front-end en freelance, et l’agence é
 - Utiliser React Developer Tools
 - Savoir utiliser le behavior driven development (BDD)
 
-## Liste des bugs repérés : 
+## Liste des bugs repérés et réparés : 
 - Le menu de navigation ne fonctionne pas
 - Le Slider n'affiche pas correctement les images (les bullets points également)
 - Dans la section "Nos réalisations", les filtres ne fonctionnent pas
