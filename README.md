@@ -4,7 +4,7 @@ Contexte fictif : Je suis développeuse front-end en freelance, et l’agence é
 
 ## Objectif du projet :
 - Lister et Réparer les bugs.
-- Rédiger le cahier de recette.
+- Rédiger le cahier de recette. (Fichier: "Pautonnier_Sandra_2_cahier_recette_122024.pdf")
 
 ## Fonctionnalités réalisées :
 - Utiliser React Developer Tools
