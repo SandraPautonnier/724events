@@ -29,18 +29,16 @@ const EventList = () => {
       return true;
     }
     return false;
-  }); 
+  });
 
   const typeList = new Set(data?.events.map((event) => event.type));
-  
 
   const changeType = (evtType) => {
     setType(evtType);
     setCurrentPage(1);
   };
-  
+
   const pageNumber = Math.ceil((data?.events?.length || 0) / PER_PAGE); //
-  
 
   return (
     <>
