@@ -1,5 +1,6 @@
 {
   "name": "724-events",
+  "homepage": "https://sandrapautonnier.github.io/724events/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,6 +18,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "lint": "eslint .eslintrc.js ./src",
     "format": "prettier ./src --write"
@@ -47,6 +50,7 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.5.0",
+    "gh-pages": "^6.3.0",
     "prettier": "^2.6.2"
   }
 }
